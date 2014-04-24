@@ -1,0 +1,59 @@
+<?php
+
+function skeleton_menu(){
+
+    $items['admin/config/skeleton'] = array(
+        'title' => 'skeleton',
+        'title callback' => 't',
+        'description' => t('Skeleton configuration'),
+        'position' => 'right',
+        'weight' => 30,
+        'page callback' => 'system_admin_menu_block_page',
+        'file' => 'system.admin.inc',
+        'access arguments' => array('administer skeleton'),
+        'file path' => drupal_get_path('module', 'system'),
+    );
+
+    $items['admin/config/skeleton/settings'] = array(
+        'title' => 'Settings',
+        'title callback' => 't',
+        'description' => t('Configure Skeleton settings'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('form_skeleton_main_settings'),
+        'access arguments' => array('administer skeleton'),
+        'file' => 'skeleton.inc',
+        'weight' => '10',
+    );
+
+    $items['admin/config/skeleton/test'] = array(
+        'title' => 'Settings 2',
+        'title callback' => 't',
+        'description' => t('Another page to configure the Skeleton settings'),
+        'page callback' => 'skeleton_page_test',
+        'access arguments' => array('administer skeleton'),
+        'file' => 'skeleton.inc',
+        'weight' => '20',
+    );
+    return $items;
+
+}
+
+
+function skeleton_permission() {
+    return array(
+        'administer skeleton' => array(
+            'title' => t('Administer configuration'),
+            'description' => t('Allow users to manage the skeleton module.'),
+        ),
+    );
+}
+
+function skeleton_help($path, $arg) {
+    switch ($path) {
+        case 'admin/help#skeleton':
+            $output = '';
+            $output .= '<h3>' . t('About skeleton') . '</h3>';
+            $output .= '<p>' . t("A helpful entry about the skeleton module.") . '<p>';
+            return $output;
+    }
+}

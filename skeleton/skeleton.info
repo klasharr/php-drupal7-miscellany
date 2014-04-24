@@ -1,0 +1,7 @@
+name = Skeleton
+description = A skeleton module with two configuration pages, a help page and a permission setting
+package = Chalky
+core = 7.x
+files[] = skeleton.module
+files[] = skeleton.inc
+configure = admin/config/skeleton
